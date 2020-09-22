@@ -1,0 +1,43 @@
+Here is a sample data file which may be used for
+the main program maincirc.c:
+
+3
+
+2 1 50 0
+-1 -1 1
+2 0 1
+5 1 1
+
+3 1 50 1
+-1 -1 -4
+2 0 2
+5 1 -5
+2 2 1
+
+This is what the numbers mean:
+
+3 how many Bezier curves to draw
+
+2 degree of first curve
+ 1 flag: plot control polygon (don't plot if set to 0)
+ 50 how many points to plot
+ 0 flag: don't plot complementary segment (do if set to 1)
+
+-1 -1 1 homogeneous coordinates of first control point
+2 0 1   homogeneous coordinates of second control point
+5 1 1   ...
+
+	same for second curve (a wild one)
+3 1 50 1
+-1 -1 -4
+2 0 2
+5 1 -5
+2 2 1
+
+	same for third curve (a tame one)
+3 1 50 1
+
+-1 0 1
+0 1 2
+1 0 1
+1 -2 1

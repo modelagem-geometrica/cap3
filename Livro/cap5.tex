@@ -1,0 +1,261 @@
+\chapter{Variedades Definidas Implicitamente}\label{cap_var_imp}
+
+\thispagestyle{empty}
+
+Para maior aprofundamento no tema apresentado nesta e nas pr\'oximas seções, \'e sugerida a leitura da tese~\cite{Cas92}, do livro~\cite{AlGe90}, do artigo~\cite{Cas06} e do curso no proceedings~\cite{Eaves76}. 
+
+\markboth{Aproxima\c{c}\~oes de Fun\c{c}\~oes Impl\'{\i}citas}{Interpola\c{c}\~ao Linear Simplicial}
+\section{Interpola\c{c}\~ao Linear Simplicial}\label{vi_ilp}
+
+
+\begin{defi} $($Aproximação Simplicial$)$
+Seja $F : S \subset  \R^{n} \rightarrow \R^{k}$ uma aplica\c c\~ao e $T$ uma triangula\c c\~ao de $S$.
+Se $\sigma = [v_{0},\ldots,v_{n}] \in T$, tem-se para cada $v \in
+\sigma$ uma \'unica $(n+1)$-upla $\lambda = (\lambda_{0}, \ldots,\lambda_{n})$ 
+tal que $\sum_{i=0}^{n} \lambda_{i} v_{i} = v$, 
+$\sum_{i=0}^{n} \lambda_{i} = 1$ e $\lambda_{i} \geq 0$, $i = 0,\ldots,n$.
+Define-se $F_{\sigma} : \sigma \rightarrow \R^{k}$ onde
+$F_{\sigma}(v) = F_{\sigma}(\sum_{i=0}^{n} \lambda_{i} v_{i}) = \sum_{i=0}^{n} \lambda_{i} F(v_{i})$.
+\end{defi}
+
+Observe que $F_{\sigma}$ \'e uma aplica\c c\~ao afim e que
+$F_{\sigma}(v_{i}) = F(v_{i})$, $i = 0, \ldots, n$, isto \'e,
+$F_{\sigma}$ \'e uma interpola\c c\~ao linear de $F$ nos v\'ertices de $\sigma$.
+
+\begin{defi} $($Aproximação Linear por Partes$)$
+Define-se uma aproxima\c c\~ao linear por partes para $F$ sendo, 
+$F_{T} : S \subset  \R^{n} \rightarrow  \R^{k}$ onde 
+$F_{T}(v) = F_{\sigma}(v)$ para $v \in \sigma \in T$.
+\end{defi}
+
+Portanto, $F_{T}$ \'e uma interpola\c c\~ao de $F$ para os
+v\'ertices de $T$ (nos simplexos de dimens\~ao zero de $T$) e que \'e afim em
+cada simplexo de dimens\~ao $n$ de $T$.
+
+\begin{teore} \label{teo_AG}
+Sejam $S \subset \R^{n}$ aberto,  $F : S \rightarrow \R^{k}$  uma
+aplica\c c\~ao de classe $C^{2}$ com $\parallel D^{2}F(x) \parallel
+\leq \alpha$ para todo $x \in S$ e $\sigma = [v_{0}, \ldots, v_{n}]$
+um simplexo de uma triangula\c c\~ao robusta $T$ de $S$ $(\theta(T) > 0)$, ent\~ao 
+\begin{enumerate}
+\item $\parallel F(v) - F_{T}(v) \parallel \leq \alpha \rho^{2}(T)/2$ 
+para todo $v \in S$ e 
+\item $\parallel DF(v) - DF_{T}(v) \parallel \leq \alpha \rho(T)/\theta(T)$ para 
+todo $v$ no interior de simplexos de dimens\~ao $n$ de $T$.
+\end{enumerate}
+\end{teore}
+
+Embora $DF_{\sigma}(v)$ esteja bem definida para todo simplexo
+$\sigma$ de dimens\~ao $n$, se $\tau$ \'e uma face comum de dois
+simplexos $\sigma_{1}$ e $\sigma_{2}$ de  dimens\~ao $n$ e $v \in
+\tau, DF_{\sigma_{1}}(v)$ e $DF_{\sigma_{2}}(v)$ podem ser distintas
+e, portanto, $DF_{T}(v)$ n\~ao est\'a bem definida.
+
+
+
+%\markboth{Aproxima\c{c}\~oes de Fun\c{c}\~oes Impl\'icitas}{Esquema de Diferen\c{c}as Simplicial}
+%\section{Esquema de Diferen\c{c}as Simplicial}\label{vi_eds}
+%
+%Esta seção e a próxima são importante para mostrar o funcionamento das aproximações de variedades implícitas e suas limitações.
+%
+%Seja $F : S \subset  \R^{n} \rightarrow \R^{k}$ uma 
+%aplica\c c\~ao de classe $C^{2}$ e $T$ uma triangula\c c\~ao de $S$.
+%
+%Seja $\sigma = [v_{0}, \ldots, v_{n}] \in T$. Como $\sigma$ \'e um
+%simplexo de dimens\~ao $n$, os vetores 
+%$\{ v_{1}-v_{0}$, $v_{2}-v_{0},\ldots,v_{n}-v_{0}\}$ s\~ao linearmente 
+%independentes; logo, fazendo \\ $\delta_{i} = \parallel v_{i}-v_{0} \parallel$ e 
+%$\omega_{i} = (v_{i}-v_{0})/\delta_{i}$, $i = 1,\ldots,n$, temos que a
+%matriz cujas colunas s\~ao os vetores $\{\omega_{1},\ldots,\omega_{n}\}$ \'e 
+%invert\'{\i}vel. 
+%
+%Para $v \in \sigma$, seja $\lambda$, tal que $\sum_{i=0}^{n} \lambda_{i} v_{i} 
+%= v$, $\sum_{i=0}^{n} \lambda_{i} = 1$ e $\lambda_{i} \geq 0$, 
+%$i = 0,\ldots,n$. Ent\~ao, pode-se escrever 
+%$$
+%\begin{array}{l}
+  %v - v_{0} = \\
+ %\sum^{n}_{i=0} \lambda_{i} v_{i} - v_{0} \sum^{n}_{i=0} \lambda_{i} = \\
+ %\sum^{n}_{i=1} \lambda_{i} (v_{i} - v_{0}) = \\
+ %\sum^{n}_{i=1} \lambda_{i} \delta_{i} \omega_{i} = \\
+ %\left( \omega_{1} \cdots \omega_{n} \right)
+  %\left(  
+  %\begin{array}{c}
+  %\lambda_{1} \delta_{1} \\
+  %\vdots \\
+  %\lambda_{n} \delta_{n} 
+  %\end{array}
+  %\right)
+%\end{array}
+%$$
+%ou
+%$$ 
+%\left( 
+%\begin{array}{c}
+%\lambda_{1} \delta_{1} \\
+%\vdots \\
+%\lambda_{n} \delta_{n}
+%\end{array}
+%\right) 
+ %= 
+%\left( \omega_{1} \cdots \omega_{n} \right)^{-1} 
+%\left( v - v_{0} \right). 
+%$$
+%
+%Agora
+%$$
+%\begin{array}{l}
+  %F_{T}(v) - F(v_{0}) = \\
+ %F_{\sigma}(v) - F(v_{0}) = \\
+ %\sum^{n}_{i=0} \lambda_{i} F(v_{i}) - F(v_{0}) \sum^{n}_{i=0} \lambda_{i} =\\
+ %\sum^{n}_{i=1} \lambda_{i} (F(v_{i}) - F(v_{0})) = \\
+ %\sum^{n}_{i=1} \lambda_{i} \delta_{i} (F(v_{i})- F(v_{0}))/\delta_{i}  
+%\end{array}
+%$$
+%ou
+%$$
+%\begin{array}{l}
+  %F_{T}(v) - F(v_{0}) = \\
+ %\left( \frac{F(v_{1})-F(v_{0})}{\delta_{1}} \cdots 
+         %\frac{F(v_{n})-F(v_{0})}{\delta_{n}} \right) 
+  %\left(
+  %\begin{array}{c}
+  %\lambda_{1} \delta_{1} \\
+  %\vdots \\
+  %\lambda_{n} \delta_{n}
+  %\end{array}
+  %\right) = \\
+ %\left( \frac{F(v_{1})-F(v_{0})}{\delta_{1}} \cdots 
+         %\frac{F(v_{n})-F(v_{0})}{\delta_{n}} \right) 
+  %\left( \omega_{1} \cdots \omega_{n} \right)^{-1} 
+  %\left( v-v_{0} \right).
+%\end{array}
+%$$
+%
+%Da\'{\i}, como $\omega_{i} = (v_{i}-v_{0})/\delta_{i}$, tem-se
+%$v_{i} = v_{0}+\delta_{i}\omega_{i}$, $i= 1,\ldots,n$, e portanto
+%{\scriptsize
+%$$
+%F_{T}(v) - F(v_{0}) = 
+%\left(
+%\frac{F(v_{0}+\delta_{1}\omega_{1})-F(v_{0})}{\delta_{1}}
+%\cdots 
+%\frac{F(v_{0}+\delta_{n}\omega_{n})-F(v_{0})}{\delta_{n}}
+%\right)
+%\left(
+%\omega_{1} \cdots \omega_{n}
+%\right)^{-1}  
+%\left(
+%v-v_{0} 
+%\right). 
+%$$
+%}
+%
+%Observe que as colunas da matriz
+%$$
+%\left(
+%\frac{F(v_{0}+\delta_{1}\omega_{1})-F(v_{0})}{\delta_{1}}
+%\cdots  
+%\frac{F(v_{0}+\delta_{n}\omega_{n})-F(v_{0})}{\delta_{n}}
+%\right)
+%$$
+%s\~ao aproxima\c c\~oes para as derivadas direcionais de
+%$F$ nas dire\c c\~oes $\omega_{1},\ldots,\omega_{n}$, em torno do ponto
+%$v_{0}$; portanto este \'e um esquema de diferen\c cas que 
+%chamaremos de esquema de diferen\c cas simplicial. 
+%
+%Assim, se $\delta_{i} \rightarrow 0$ para $i= 1, \ldots, n$ com
+%uma certa proporcionalidade, isto \'e, se o di\^ametro de $\sigma$
+%tende a zero mantendo a robustez limitada para que os vetores 
+%$\omega_{1},\ldots,\omega_{n}$ continuem sendo linearmente independentes, 
+%ent\~ao $F_{\sigma}$ \'e uma apro\-xima\c c\~ao para os dois primeiros 
+%termos da s\'erie de Taylor de $F$, em torno do ponto $v_{0}$.
+%Outra observa\c c\~ao \'e que a mesma an\'alise pode ser feita para
+%qualquer outro v\'ertice de $\sigma$; portanto, o esquema descrito anteriormente
+%n\~ao depende apenas do ponto $v_{0}$ e sim do simplexo $\sigma$.
+%
+
+\markboth{Aproxima\c{c}\~oes de Fun\c{c}\~oes Impl\'icitas}{Resultados sobre Aproximações Simpliciais}
+\section{Resultados sobre Aproximações Simpliciais}\label{vi_ari}
+
+
+Seja $F : U \rightarrow \R^{k}$ uma aplica\c c\~ao de classe $C^{p}$ no aberto $U \subset \R^{n}$, com $n > k$, $p > max\{ 1, n/k -1\}$ e tendo ${\bf 0} \in \R^{k}$ como valor regular. Considere a variedade de dimens\~ao $n-k$ e classe $C^{p}$, $\mathcal{M} = F^{-1}({\bf 0})$ e uma vizinhan\c ca tubular de $\mathcal{M}$, $V_\mathcal{M}$, tal como no Teorema \ref{teo_VT}.
+
+Como desejamos uma aproxima\c c\~ao de $\mathcal{M}$ que possa ser representada computacionalmente, vamos restringir o dom\'{\i}nio de $F$ a um compacto $S \subset U$. Assim, existe $\alpha > 0$ tal que $\parallel D^{2} F(x)\parallel \leq \alpha$ para todo $x \in K$ e, portanto, se $T$ for uma triangula\c c\~ao robusta de $S$, fica valendo o Teorema \ref{teo_AG} para $F_{T}$.
+
+Para estabelecermos algumas propriedades sobre a aproxima\c c\~ao $\mathcal{M}_{T} = F_{T}^{-1}({\bf 0})$ de $\mathcal{M}$, vamos observar algumas propriedades que $F$ e $T$ devem satisfazer. 
+
+Seja $\sigma = [v_{0}, \ldots, v_{k}]$ um simplexo de dimens\~ao $k$ de $U$. Para que $F_{\sigma}(\sigma) = [F(v_{0}),\ldots,F(v_{k})]$ seja um simplexo de dimens\~ao $k$ em $\R^{k}$, basta que os de vetores $F(v_{1})-F(v_{0}),\ldots,F(v_{k})-F(v_{0})$ sejam linearmente independentes, pelo fato de $F_{\sigma}$ ser uma aplica\c c\~ao afim.
+Neste caso, se $\tau$ \'e uma face de $\sigma$ de dimens\~ao $r \leq k$, teremos que $F_{\sigma}(\tau)$ \'e uma face de $F_{\sigma}(\sigma)$ de dimens\~ao $r$. 
+
+Com rela\c c\~ao a este assunto temos o seguinte teorema:
+
+\begin{teore} {\rm $($Veja~\cite{Fr91}$)$} \label{teo_Fr91_1}
+Para quase todo simplexo $\sigma$ de dimens\~ao $r \leq k$ de $S \cap V_\mathcal{M}$, temos que $F_{\sigma}(\sigma)$ \'e um simplexo de dimens\~ao $r$ em $\R^{k}$.
+\end{teore}
+
+
+\begin{defi} 
+Diremos que $v \in \sigma = [v_{0},\ldots,v_{n}] \in T$ \'e um ponto regular de $F_{T}$, se $DF_{\sigma}(v)$ for sobrejetora, ou de forma equivalente, que a matriz 
+$$
+\left( 
+\begin{array}{ccc}
+1 & \cdots & 1 \\
+F(v_{0}) & \cdots & F(v_{n})
+\end{array} 
+\right)
+$$
+tenha posto $k+1$. 
+Se $v$ n\~ao for um ponto regular de $F_{T}$, diremos que
+\'e um ponto cr\'{\i}tico de $F_{T}$. 
+Diremos que $c \in \R^{k}$ \'e valor regular de $F_{T}$ se todo $v \in F_{T}^{-1}(c)$ for ponto regular de $F_{T}$. 
+Se $c$ n\~ao for valor regular de $F_{T}$, diremos que \'e valor cr\'{\i}tico de $F_{T}$.
+\end{defi} 
+
+\begin{teore} {\rm $($Veja~\cite{Eaves76}$)$} \label{teo_Ea76}
+Seja $T$ uma triangulação de $S$. Se $0 \in \R^{n}$ for valor regular de $F_{T}$, ent\~ao $\mathcal{M}_{T} = F_{T}^{-1}(0)$ \'e uma variedade linear por partes de dimens\~ao $n-k$.
+\end{teore} 
+
+Observe-se que o teorema \ref{teo_Ea76} n\~ao garante que $F_{T}^{-1}(0) \cap \sigma$ seja uma c\'elula de dimens\~ao $r$ se $\sigma$ for um simplexo de dimens\~ao $k+r$, $r = 1,\ldots,n-k$.  
+Com rela\c c\~ao a esta observa\c c\~ao, temos o seguinte exemplo:
+$ F : \R^{2} \rightarrow \R$ definida por $F(x,y) = x + 2y$ e 
+$\sigma = [v_{0},v_{1},v_{2}]$ com $v_{0} = (0, 0), v_{1} = (1, 0)$ e 
+$v_{2} = (0, 1)$. Como $F(v_{0}) = 0, F(v_{1}) = 1$ e $F(v_{2}) = 2$, temos
+que $F_{\sigma}^{-1}(0) \cap \sigma = \{(0, 0)\}$, que \'e uma
+c\'elula de dimens\~ao $0$.
+
+Como $DF(x)$ tem posto $k$ para todo $x \in S \cap V_\mathcal{M}$, a inversa de Moore-Penrose para $DF(x)$, $DF(x)^{+} = DF(x)^{t} \cdot (DF(x) \cdot DF(x)^{t})^{-1}$ est\'a bem definida. 
+Como $S \cap V_\mathcal{M}$ \'e um conjunto compacto, existe $\mu > 0$, tal que $\parallel DF(x)^{+} \parallel \leq \mu$ para todo $x \in S \cap V_\mathcal{M}$. 
+
+\begin{teore} {\rm $($Veja~\cite{Fr91}$)$} \label{teo_Fr91_2}
+Para quase todo simplexo $\sigma$ de dimens\~ao $k$ de $S \cap V_\mathcal{M}$ com $\alpha \mu \rho(\sigma)/\theta(\sigma) < 1$, cujo interior intercepta $\mathcal{M}$, temos que o interior de $\sigma$ intercepta $\mathcal{M}_{\sigma}$. 
+\end{teore} 
+
+Como $S$ \'e compacto, para quase toda triangula\c c\~ao $T$ de $S$, seus simplexos de dimens\~ao maior ou igual a $k$ t\^em interior transversal a $\mathcal{M}$. 
+Da\'{\i}, segue o corol\'ario do teorema \ref{teo_Fr91_2}.
+
+\begin{corol} {\rm $($Veja~\cite{Fr91}$)$} \label{cor_Fr91}
+Para quase toda triangula\c c\~ao robusta $T$ de $S$ com di\^ametro suficientemente pequeno, temos que todo simplexo de dimens\~ao maior ou igual a $k$ tem interior transversal a $\mathcal{M}$ e $\mathcal{M}_{T}$, e se intercepta $\mathcal{M}$, ent\~ao tamb\'em intercepta $\mathcal{M}_{T}$. 
+\end{corol} 
+ 
+O corol\'ario \ref{cor_Fr91} nos d\'a duas propriedades muito importantes: 
+para quase toda triangula\c c\~ao $T$ de $S$ com di\^ametro suficientemente
+pequeno, temos 
+\begin{itemize}
+\item se $\sigma$ for um simplexo de dimens\~ao $k$ de $T$ e $x \in \sigma \cap \mathcal{M}$, existe $v \in \sigma \cap \mathcal{M}_{T}$ e consequentemente $d(x, v) = \parallel x-v \parallel \leq \rho(\sigma) \leq \rho(T)$; 
+\item se $\sigma$ for um simplexo de dimens\~ao $k+r$ de $T$ com $0 \leq r \leq n-k$, temos que se $F_{T}^{-1}(0) \cap \sigma \neq \emptyset$, ent\~ao $F_{T}^{-1}(0) \cap \sigma$ \'e uma c\'elula convexa afim de dimens\~ao $r$. 
+\end{itemize}
+
+A segunda propriedade ser\'a muito importante para representa\c c\~ao computacional das c\'elulas de $\mathcal{M}_{T}$. 
+Tamb\'em com rela\c c\~ao \`a aproxima\c c\~ao entre $\mathcal{M}$ e $\mathcal{M}_{T}$, temos os seguintes teoremas:
+
+\begin{teore} {\rm $($Veja~\cite{GaZa80}$)$} \label{teo_GaZa80}
+Dado $\epsilon > 0$, existe uma triangula\c c\~ao $T$ de $S$ tal que, se $v \in \mathcal{M}_{T} = F_{T}^{-1}(0)$, ent\~ao $d(v,\mathcal{M}) = inf \{\parallel u-v\parallel ; u \in \mathcal{M} \} < \epsilon$. 
+\end{teore} 
+
+\begin{teore} {\rm $($Veja~\cite{AlGe80}$)$} \label{teo_AG80}
+Sejam $x \in \mathcal{M}$ e $y \in \mathcal{M}_{T}$. 
+Se $\parallel x-y \parallel \leq 1/(\alpha \mu)$, ent\~ao $\parallel x-y \parallel \leq \alpha \mu \rho^{2}(T)$.
+\end{teore} 
+
+

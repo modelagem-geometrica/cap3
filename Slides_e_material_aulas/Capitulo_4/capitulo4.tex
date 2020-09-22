@@ -1,0 +1,176 @@
+%\documentclass{beamer}[10]
+\documentclass[serif,10pt]{beamer}
+\usetheme{Madrid}
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{multimedia}
+\usepackage{pgfgantt}
+\usepackage{overpic}
+\usepackage{psfrag}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{graphicx,xr}
+\usepackage[T1]{fontenc}		% usa fontes postscript com acentos
+\setbeamersize{text margin left=20pt,text margin right=20pt} % para
+%\input{packages} %aqruivo latex onde estão salvados os pacotes.
+%\usepackage[pdftex]{hyperref} % link
+\usefonttheme{professionalfonts}
+\usepackage{psfrag}
+\usepackage{eqnarray,amsmath}
+\usepackage{verbatim}
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\newtheorem{lema}{Lema}
+\newtheorem{teore}{Teorema}
+\newtheorem{defi}{Definição}
+\newtheorem{corol}{Corolário}
+\newtheorem{ex}{Exemplo}
+\newtheorem{Codigo}{Código em Octave}
+\newtheorem{propri}{Propriedade}
+\newcommand{\dem}{\noindent \underline{Demonstração}: $\,$}
+\newcommand{\fim}{\hfill $\rule{2.0mm}{2.0mm}$ \\}    
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+
+%\DeclareCaptionType{Codigo}
+
+\setbeamertemplate{caption}[numbered]
+
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[]{{\bf \huge{Variedades Computacionais}}}
+   \vspace{3.5cm}
+ \author[Variedades Computacionais]{
+         {\huge \color{blue} Capítulo 4} \\ \vspace{0.5cm}
+         {\large Antonio Castelo e Juliana Bertoco} \vspace{0.5cm}} 
+ \date{ }
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}
+\maketitle
+\vspace{-2.0cm}
+\begin{figure}[] 
+\begin{center} 
+   \includegraphics[clip,scale=0.4]{imagens/Olga_Sorkine_3.png} 
+\end{center}
+\end{figure} 
+\end{frame} 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pgfdeclareimage[height=1.8cm]{logo}{imagens/olga.png} 
+\logo{\pgfuseimage{logo}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SUMARIO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[allowframebreaks]
+\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centering
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Capítulo 4:  Modelagem Utilizando Operadores Diferenciais}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 4.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Capítulo 4}}
+
+\begin{block}{\bf Capítulo 4: Modelagem Utilizando Operadores Diferenciais}
+Neste capítulo é apresentado um método de reconstrução de superfícies lineares por partes utilizando o operador de Laplace-Beltrami discreto.
+\end{block}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Operador de Laplace-Beltrami}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 4.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Operador de Laplace-Beltrami}}
+
+\begin{block}{\bf Operador de Laplace-Beltrami}
+A equação de Laplace-Beltrami é uma variação da equação de Laplace que tem propriedades geométricas importantes das superfícies que são solução desta equação.
+\end{block}
+
+\begin{figure}[h]
+\begin{center} 
+{\includegraphics[angle=0,scale=0.55]{imagens/Olga_Sorkine_2}}
+\caption{Superfície deformável.} 
+\label{fig.Deformavel}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Reconstrução de Variedades Lineares por Partes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 4.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Reconstrução de Variedades Lineares por Partes}}
+
+\begin{block}{\bf Reconstrução de Variedades Lineares por Partes}
+O operador de Laplace-Beltrami discreto pode ser utilizado para a reconstrução de variedades de dimensão 1, 2 ou 3, lineares por pates a partir de poucas amostras na variedade original.
+\end{block}
+
+\begin{figure}[h]
+\begin{center} 
+{\includegraphics[angle=0,scale=0.75]{imagens/Olga_Sorkine}}
+\caption{Superfície deformável.} 
+\label{fig.Deformavel2}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Equipe}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Equipes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Equipe}}
+
+\begin{block}{\bf Equipe}
+\begin{itemize}
+\item {\bf Capítulo 4:} Pedro e Fakhoury;
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Referências}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Referências %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Referências}}
+
+\begin{block}{\bf Referências}
+\begin{itemize}
+\item Artigos da Olga Sorkine;
+\item \url{https://igl.ethz.ch/publications/}
+\item \url{https://igl.ethz.ch/code/}
+\item \url{https://igl.ethz.ch/projects/Laplacian-mesh-processing/Laplacian-mesh-editing/index.php}
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document} 
+
+ 

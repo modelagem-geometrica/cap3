@@ -1,0 +1,248 @@
+%\documentclass{beamer}[10]
+\documentclass[serif,10pt]{beamer}
+\usetheme{Madrid}
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{multimedia}
+\usepackage{pgfgantt}
+\usepackage{overpic}
+\usepackage{psfrag}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{graphicx,xr}
+\usepackage[T1]{fontenc}		% usa fontes postscript com acentos
+\setbeamersize{text margin left=20pt,text margin right=20pt} % para
+%\input{packages} %aqruivo latex onde estão salvados os pacotes.
+%\usepackage[pdftex]{hyperref} % link
+\usefonttheme{professionalfonts}
+\usepackage{psfrag}
+\usepackage{eqnarray,amsmath}
+\usepackage{verbatim}
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\newtheorem{lema}{Lema}
+\newtheorem{teore}{Teorema}
+\newtheorem{defi}{Definição}
+\newtheorem{corol}{Corolário}
+\newtheorem{ex}{Exemplo}
+\newtheorem{Codigo}{Código em Octave}
+\newtheorem{propri}{Propriedade}
+\newcommand{\dem}{\noindent \underline{Demonstração}: $\,$}
+\newcommand{\fim}{\hfill $\rule{2.0mm}{2.0mm}$ \\}    
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+
+%\DeclareCaptionType{Codigo}
+
+\setbeamertemplate{caption}[numbered]
+
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[]{{\bf \huge{Variedades Computacionais}}}
+   \vspace{3.5cm}
+ \author[Variedades Computacionais]{
+         {\huge \color{blue} Capítulo 5} \\ \vspace{0.5cm}
+         {\large Antonio Castelo e Juliana Bertoco} \vspace{0.5cm}} 
+ \date{ }
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}
+\maketitle
+\vspace{-2.0cm}
+\begin{figure}[] 
+\begin{center} 
+   \includegraphics[clip,scale=0.1]{imagens/dragon100} 
+\end{center}
+\end{figure} 
+\end{frame} 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pgfdeclareimage[height=1.8cm]{logo}{imagens/dragon100_2.png} 
+\logo{\pgfuseimage{logo}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SUMARIO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[allowframebreaks]
+\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centering
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Capítulo 5: Variedades Definidas Implicitamente}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 5.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Capítulo 5}}
+
+\begin{block}{\bf Capítulo 5: Variedades Definidas Implicitamente}
+Neste capítulo são apresentadas técnicas de poligonalização de variedades definidas implicitamente utilizando aproximações simpliciais e sua visualização através de projeções e cortes.
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Aproximações Simpliciais}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 5.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Aproximações Simpliciais}}
+
+
+\begin{block}{\bf Aproximações Simpliciais}
+Aproximações simpliciais são utilizadas para a poligonalização de uma variedade definida implicitamente. Para isto é necessário obter uma triangulação do domínio da função.
+\end{block}
+
+\begin{figure}[h]
+\begin{center} 
+{\includegraphics[angle=0,scale=0.65]{imagens/triangulacao_j1.pdf}}
+\caption{Triangulação $J_1$.} 
+\label{fig.j1}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Marching Simplex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 5.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Marching Simplex}}
+
+
+\begin{block}{\bf Marching Simplex}
+O método marching simplex consiste em percorrer todos os simplexos da triangulação para aproximar a variedade em cada simplexo percorrido.
+\end{block}
+
+\begin{figure}[h]
+\begin{center} 
+{\includegraphics[angle=0,scale=0.20]{imagens/boolean_neptune.jpg}}
+\qquad 
+{\includegraphics[angle=0,scale=0.20]{imagens/Lucy.jpg}}
+\caption{Netuno à esquerda e estátua Lucy à direita.} 
+\label{fig.netuno_lucy}
+\end{center}
+\end{figure}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Continuation Simplex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 5.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Continuation Simplex}}
+
+\begin{block}{\bf Continuation Simplex}
+O método continuation simplex consiste em percorrer apenas os simplexos da triangulação que são transversais a variedade.
+\end{block}
+
+\begin{figure}[h]
+\begin{center} 
+{\includegraphics[angle=0,scale=0.17]{imagens/dragon035.jpg}}
+%\qquad 
+{\includegraphics[angle=0,scale=0.17]{imagens/dragon050.jpg}}
+%\qquad 
+{\includegraphics[angle=0,scale=0.17]{imagens/dragon100.jpg}}
+\caption{Poligonalização de um dragão chines.} 
+\label{fig.dragao}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Visualização}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 5.4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Visualização}}
+
+\begin{block}{\bf Visualização}
+A visualização de variedades em dimensões elevadas é feita utilizando projeções da variedade poligonalizada e de cortes destas variedade em planos para apresentar na tela do computador.
+\end{block}
+
+\begin{figure}[h]
+\begin{center} 
+{\includegraphics[angle=0,scale=0.28]{imagens/3Dtorus_all.png}}
+\qquad 
+{\includegraphics[angle=0,scale=0.28]{imagens/3Dtorus.png}}
+\caption{Proje\c{c}\~ao em $\R^3$ do toro $S^2 \times S^1$ à esquerda e restrição do toro com $x_i \ge 0$ à direita.} 
+\label{fig.toru}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+
+\subsection{Reconstrução de Superfícies a Partir de Nuvens de Pontos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 5.5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Reconstrução de Superfícies a Partir de Nuvens de Pontos}}
+
+\begin{block}{\bf Reconstrução de Superfícies a Partir de Nuvens de Pontos}
+Uma aplicação é a utilização de aproximação RBF (Funções de Base Radial) para reconstruir superfícies a partir de nuvens de pontos que juntamente com o código Marching Simplex será utilizado para gerar uma aproximação da superfície linear por partes.
+\end{block}
+
+\begin{figure}[h]
+\begin{center} 
+{\includegraphics[angle=0,scale=0.40]{imagens/RBF.png}}
+\caption{Reconstrução utilizando RBF.} 
+\label{fig.RBF}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Equipe}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Equipes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Equipe}}
+
+\begin{block}{\bf Equipe}
+\begin{itemize}
+\item {\bf Capítulo 5:} Tubone e Gustavo;
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Referências}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Referências %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Referências}}
+
+\begin{block}{\bf Referências}
+\begin{itemize}
+\item Livro Castelo
+\item Tese Castelo
+\item Livro Abel Gomes
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document} 
+
+ 

@@ -1,0 +1,1258 @@
+%\documentclass{beamer}[10]
+\documentclass[serif,10pt]{beamer}
+\usetheme{Madrid}
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{multimedia}
+\usepackage{pgfgantt}
+\usepackage{overpic}
+\usepackage{psfrag}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{graphicx,xr}
+\usepackage[T1]{fontenc}		% usa fontes postscript com acentos
+\setbeamersize{text margin left=20pt,text margin right=20pt} % para
+%\input{packages} %aqruivo latex onde estão salvados os pacotes.
+%\usepackage[pdftex]{hyperref} % link
+\usefonttheme{professionalfonts}
+\usepackage{psfrag}
+\usepackage{eqnarray,amsmath}
+\usepackage{verbatim}
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\newtheorem{lema}{Lema}
+\newtheorem{teore}{Teorema}
+\newtheorem{defi}{Definição}
+\newtheorem{corol}{Corolário}
+\newtheorem{ex}{Exemplo}
+\newtheorem{Codigo}{Código em Octave}
+\newtheorem{propri}{Propriedade}
+\newcommand{\dem}{\noindent \underline{Demonstração}: $\,$}
+\newcommand{\fim}{\hfill $\rule{2.0mm}{2.0mm}$ \\}    
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+
+%\DeclareCaptionType{Codigo}
+
+\setbeamertemplate{caption}[numbered]
+
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[]{{\huge{\bf Variedades Computacionais}}}
+   \vspace{3.5cm}
+ \author[Variedades Computacionais]{
+         {\huge \color{blue} Capítulo $2$} \\ \vspace{0.5cm}
+         {\large Antonio Castelo e Juliana Bertoco} \vspace{0.5cm}} 
+ \date{ }
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\maketitle
+\vspace{-2.0cm}
+\begin{figure}[] 
+\begin{center} 
+ \includegraphics[clip,scale=0.3]{imagens/KleinBottle-01.png} 
+\end{center}
+\end{figure} 
+\end{frame} 
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pgfdeclareimage[height=1.8cm]{logo}{imagens/KleinBottle-01_2.png} 
+\logo{\pgfuseimage{logo}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% SUMARIO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Sumário}
+
+\tableofcontents
+
+\end{frame}
+
+
+
+\centering
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{ Variedades Diferenciáveis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Diferenciáveis}}
+
+\begin{defi}[Homeomorfismo]
+ Uma aplicação $f : U \rightarrow V$ é um homeomorfismo se é uma aplicação contínua, invertível e sua inversa $f^{-1} : V \rightarrow U$ é uma aplicação contínua.
+Neste caso dizemos que $U$ e $V$ são homeomorfos.
+\end{defi}
+
+\begin{figure}[htpb]
+ \begin{tabular}{ccc}
+  \fbox{\includegraphics[angle=0,scale=0.33]{imagens/canecarosquinha.png}} & \fbox{\includegraphics[angle=0,scale=0.25]{imagens/cuboesfera.png} } \\
+  Rosquinha e caneca & Cubo e esfera \\
+ \end{tabular}
+ \caption{Figuras Homeomorfas - Imagens da internet} 
+\end{figure}
+
+% \begin{minipage}[c]{0.6\textwidth}
+% \begin{figure}[htpb]
+% \begin{center} 
+% \fbox{\includegraphics[angle=0,scale=0.33]{imagens/canecarosquinha.png}}
+% \caption{Rosquinha e caneca - Imagens da internet} 
+% \label{fig.canecarosquinha}
+% \end{center}
+% \end{figure}
+%  \end{minipage}
+%  \hspace{0.2cm}
+% \begin{minipage}[c]{0.35\textwidth}
+% \begin{figure}[htpb]
+% \begin{center} 
+% \fbox{\includegraphics[angle=0,scale=0.23]{imagens/cuboesfera.png} }\\
+% \caption{Cubo e esfera - Imagens da internet} 
+% \label{fig.cuboesfera}
+% \end{center}
+% \end{figure}
+% \end{minipage}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Diferenciáveis}}
+
+\begin{defi}[Difeomorfismo]
+Uma aplicação $f : U \rightarrow V$ é um difeomorfismo de classe $C^r$ $(1 \le r \le \infty)$ se é uma aplicação invertível e sua inversa $f^{-1} : V \rightarrow U$ é uma aplicação de classe $C^r$.
+Neste caso dizemos que $U$ e $V$ são difeomorfos.
+\end{defi}
+
+\begin{figure}[h]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.3]{imagens/difeo.png}} 
+\caption{Exemplo de difeomorfismo} 
+\label{fig.difeo}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Diferenciáveis}}
+
+\begin{defi}[Valor Regular]
+Seja $f : U \subset \R^n \rightarrow \R^k$ uma aplicação de classe $C^r$ $(r \ge 1)$.  $c \in \R^k$ é valor regular de $f$ se para todo $x \in f^{-1}(c)$, $Df(x): \R^n \rightarrow \R^k$ tem posto máximo.  Se $c$ n\~ao for valor regular de $f$, diremos que \'e valor cr\'{\i}tico de $f$. 
+\end{defi}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Diferenciáveis}}
+
+
+\begin{teore}[Função Inversa]
+Sejam $U \subset \R^n$ um aberto e $f : U \rightarrow \R^n$ uma aplicação de classe $C^r$ $(1 \le r \le \infty)$ tal que, em um ponto $x_0 \in U$, a derivada $Df(x_0)$ é um isomorfismo. Então $f$ aplica difeomorficamente uma vizinhança menor $V$ de $x_0$ sobre uma vizinhança $W$ de $f(x_0)$.
+\end{teore}
+
+\begin{figure}[h]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.35]{imagens/finv.png}} 
+\caption{Função inversa} 
+\label{fig.difeo}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Diferenciáveis}}
+
+\begin{teore}[Função Implícita]
+Sejam $U \subset \R^m \times \R^n$ um aberto e $f : U \rightarrow \R^n$ uma aplicação de classe $C^r$ $(1 \le r \le \infty)$. Sejam  $z_0 = (x_0,y_0) \in U$ e $c = f(z_0)$. 
+Suponha que a derivada em relação a segunda variável $D_2f(z_0): \R^n \rightarrow \R^n$ seja um isomorfismo. 
+Então existem abertos $V \subset \R^m$ contendo $x_0$, e $W \subset U$ contendo $z_0$, tais que, para cada $x \in V$, existe um único $\xi(x) \in \R^n$, com $(x,\xi(x)) \in W$ e $f(x,\xi(x)) = c$.
+A aplicação $\xi : V \rightarrow \R^n$, assim definida, é de classe $C^r$ e sua derivada é dada por
+$D\xi(x) = [D_2f(x,\xi(x))]^{-1} \cdot D_1f(x,\xi(x))$.
+\end{teore}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue}  Variedades Diferenciáveis}}
+
+\begin{defi}[Variedade Diferenciável]
+$\mathcal{M} \subset \R^m$ é uma variedade diferenciável de dimensão $n$ e de classe $C^r$ $(1 \le r \le \infty)$ 
+se para todo $x \in \mathcal{M}$ existirem vizinhanças abertas $U \subset \R^m$ de $x$, 
+$V \subset \R^{n-1} \times \R^{+}$ e um difeomorfismo de classe $C^r$ de $\mathcal{M} \cap U$ em $V$.  
+Um difeomorfismo $\varphi : U \cap \mathcal{M} \rightarrow  V $ \'e chamado de parametriza\c c\~ao da regi\~ao $U \cap \mathcal{M}$. A fronteira de $\mathcal{M}$, $\partial \mathcal{M}$ \'e o conjunto dos pontos de $\mathcal{M}$ correspondentes a $\R^{n-1} \times \{0\}$ pelas parametriza\c c\~oes. 
+\end{defi}
+
+\begin{figure}[h]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.2]{imagens/variedade.png} }
+\caption{Variedade diferenciável}  
+\label{fig.varDif}
+\end{center}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Diferenciáveis}}
+
+\begin{minipage}[c]{0.4\linewidth}
+\begin{figure}[h]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.25]{imagens/BoysSurfaceTopView.png}} 
+\caption{Proje\c{c}\~ao em $\R^3$ do plano projetivo. Figura extraída de \url{https://commons.wikimedia.org/wiki/File:BoysSurfaceTopView.PNG} } 
+\label{fig.BoySurface}
+\end{center}
+\end{figure}
+\end{minipage}
+\hspace{0.1cm}
+\begin{minipage}[c]{0.4\linewidth}
+\begin{figure}[h]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.25]{imagens/KleinBottle-01.png} }
+\caption{Superfície não orientável chamada de {\bf garrafa de Klein}. Figura extraída de \url{https://commons.wikimedia.org/wiki/File:KleinBottle-01.png} } 
+\label{fig.BoySurface}
+\end{center}
+\end{figure}
+\end{minipage}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Diferenciáveis}}
+
+\begin{defi}[Espaço Tangente]
+Sejam $\mathcal{M}$ uma variedade diferenci\'avel de dimens\~ao $n$ e $\varphi : V \rightarrow U \cap \mathcal{M}$ uma parametriza\c c\~ao de $U \cap \mathcal{M}$, onde $\varphi(u) = v$.
+Definimos o espa\c co vetorial tangente a $\mathcal{M}$ no ponto $v$ como $T_{v}\mathcal{M} = \{ D\varphi(u) \cdot y \; | \; y \in {\R}^{n}\}$, onde $D\varphi(u)$ é o operador derivada da parametrização $\varphi$ no ponto $u \in V$. 
+\end{defi}
+
+\begin{figure}[h]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.25]{imagens/afim.png} }
+\caption{Variedade afim tangente que passa por $v$ e é paralela a $T_{v}\mathcal{M}$ } 
+\label{fig.BoySurface}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Diferenciáveis}}
+
+\begin{teore}[Variedade Definida Implicitamente]\label{teo_VI}
+Sejam $U \subset \R^n$ um aberto e $f : U \rightarrow \R^k$ uma aplicação de classe $C^r$ $(1 \le r \le \infty)$.
+Se $c \in \R^k$ é valor regular de $f$, ou $f^{-1}(c)$ é vazio ou é uma variedade diferenciável de dimensão $n-k$ e de classe $C^r$ em $\R^n$.
+Além disso, para todo $p \in f^{-1}(c)$, o espaço tangente em $p$ é o núcleo de $Df(p): \R^n \rightarrow \R^k$.
+\end{teore} 
+
+\begin{teore}[Vizinhança Tubular] \label{teo_VT}
+Seja $F : U \rightarrow \R^{n}$ uma aplica\c c\~ao de classe $C^{r}$ no 
+aberto $U \subset \R^{m}$ com $m \geq n$ e $1 \le r \le \infty$. 
+Se $c \in  \R^{n}$ \'e um valor regular de $F$, ent\~ao existe uma vizinhan\c ca fechada $V_{\mathcal{M}}$ da variedade $\mathcal{M} = F^{-1}(c)$ constitu\'{\i}da de variedades, isto \'e, se $x \in V_{\mathcal{M}}$, ent\~ao $F^{-1}(F(x))$ \'e uma variedade contida em $V_{\mathcal{M}}$.
+\end{teore} 
+
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Diferenciáveis}}
+
+\begin{defi}[Conjunto de Medida Nula]
+Uma conjunto $X \subset \R^n$ é um conjunto de medida nula em $\R^n$ se para cada $\epsilon > 0$ dado, é possível obter uma sequência de hipercubos de dimensão $n$ abertos $C_1, C_2,\ldots,C_k,\ldots$ em $\R^n$ tais que $X \subset \cup_{k=1}^\infty C_k$ e $\sum_{k=1}^\infty vol(C_k) < \epsilon$.
+\end{defi}
+
+\begin{defi}[Conjunto Denso]
+Uma conjunto $X \subset \R^n$ é um conjunto denso em $\R^n$ se o complementar $R^n - X$ tem medida nula em $\R^n$.
+\end{defi}
+
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Diferenciáveis}}
+
+\begin{teore}[Sard] \label{Teo_Sard}
+Seja $f : U \subset \R^n \rightarrow \R^k$ uma aplicação de classe $C^r$ $(r \ge max\{1,n-k+1\})$. 
+O conjunto dos valores regulares de $f$ é aberto e denso em $\R^k$.
+\end{teore}
+
+\begin{defi}[Subvariedade Diferenciável]
+Seja $\mathcal{M} \subset \R^m$ uma variedade diferenciável de dimensão $n$ e de classe $C^r$ $(1 \le r \le \infty)$. 
+$\mathcal{N} \subset \mathcal{M}$ é uma subvariedade diferenciável de dimensão $k$ de $\mathcal{M}$ e de classe $C^s$ $(1 \le s \le r)$ 
+se para todo $x \in \mathcal{N}$ existirem vizinhanças abertas $U \subset \R^m$ de $x$, 
+$V \subset \R^{k-1} \times \R^{+}$ e um difeomorfismo de classe $C^s$ de $\mathcal{N} \cap U$ em $V$.  
+\end{defi}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Diferenciáveis}}
+
+
+\begin{defi}[Transversalidade] \label{def_TR}
+Sejam $\mathcal{M}$ e $\mathcal{N}$ duas variedades de dimensão $m$ e $n$ respectivamente em $\R^k$ $(k \ge max\{m , n\})$ e de classe $C^r$ $(1 \le r \le \infty)$. 
+Dizemos que $\mathcal{M}$ e $\mathcal{N}$ são transversais em um ponto $p \in \mathcal{M} \cap \mathcal{N}$ se $T\mathcal{M}_p + T\mathcal{N}_p = \R^k$.
+Se $\mathcal{M} \cap \mathcal{N} = \emptyset$, ent\~ao $\mathcal{M}$ e $\mathcal{N}$ s\~ao transversais por vacuidade.
+\end{defi}
+
+\begin{figure}[h]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.3]{imagens/transv.png}} 
+\caption{Transversalidade} 
+\label{fig.transv}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Variedades Lineares por Partes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+\begin{defi}[Espaço Afim]
+Dados os pontos $v_{0},v_{1},\ldots,v_{k} \in \R^{n}$, chama-se o conjunto 
+$aff(v_{0},\ldots,v_{k}) =$ 
+$\{ v \in  \R^{n} \; |$ $ \sum_{i=0}^{k} \lambda_{i} v_{i} = v$ e 
+$\sum_{i=0}^{k} \lambda_{i} = 1\}$ de conjunto afim gerado pelos pontos
+$v_{0},\ldots,v_{k}$.  
+\end{defi}
+
+\begin{defi}[Dimensão]
+Chama-se de dimens\~ao de $aff(v_{0},\ldots,v_{k})$ 
+e denota-se por $dim(aff(v_{0},\ldots,v_{k}))$ o maior n\'umero de vetores 
+linearmente independentes entre os do conjunto
+$\{v_{1}-v_{0},\ldots,v_{k}-v_{0}\}$.
+\end{defi}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+\begin{defi}[Célula Convexa Afim]
+Chama-se de c\'elula convexa afim, gerada pelos
+pontos $v_{0},v_{1},\ldots,v_{k}$, o conjunto 
+$\sigma = [v_{0},\ldots,v_{k}]$ $ = \{ v \in  \R^{n} \; | \;
+\sum_{i=0}^{k} \lambda_{i} v_{i} = v, \sum_{i=0}^{k} \lambda_{i} = 1$
+e $\lambda_{i} \geq 0 \}$. Definimos a dimens\~ao de $\sigma$ por
+$dim(\sigma) =$ $dim(aff(v_{0},\ldots,$ $v_{n}))$. 
+Uma célula convexa afim $\sigma$ de dimensão $k$ é denominada $k$-célula.  
+\end{defi}
+
+\begin{figure}[h]
+\begin{center}
+\begin{tabular}{ccc}
+\fbox{\includegraphics[angle=0,scale=0.25]{imagens/fig6-0.eps}} & \hspace{0.5cm} \fbox{\includegraphics[angle=0,scale=0.25]{imagens/fig6-1.eps}} & \hspace{0.5cm}
+\fbox{ \includegraphics[angle=0,scale=0.1]{imagens/fig6-2.eps}}\\
+ 0-célula & \hspace{0.5cm} 1-célula & \hspace{0.5cm} 2-célula\\
+ \end{tabular} 
+ \begin{tabular}{c}
+\fbox{ \includegraphics[angle=0,scale=0.27]{imagens/fig6-3.eps}} \\
+3-célula \\
+\end{tabular}
+\end{center}
+\caption{Exemplos de 0-célula, 1-célula, 2-células e 3-células.}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+
+\begin{defi}[Bordo de uma Célula Convexa Afim] 
+O bordo de uma c\'elula convexa afim $\sigma$, denotada por $\partial(\sigma)$,
+é o conjunto de sub-células satisfazendo:
+\begin{enumerate}
+\item Se $\sigma' \in \partial(\sigma)$, então $\sigma'$ é gerada por um subconjunto de vértices de $\sigma$;
+\item Para qualquer $p \in \sigma' \in \partial(\sigma)$, não existe uma bola contendo $p$ em $aff(\sigma)$ inteiramente contida em $\sigma'$;
+\item Se $\sigma'_1, \sigma'_2 \in \partial(\sigma)$ e tem a mesma dimensão então  $\sigma'_1 \nsubseteq \sigma'_2$ e $\sigma'_2 \nsubseteq \sigma'_1$.
+\end{enumerate}
+\end{defi}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+\begin{defi}[Face de uma Célula Convexa Afim] 
+Sejam uma célula convexa afim $\sigma = [v_{0},\ldots,v_{m}]$ de dimensão $n$ e
+$\tau = [\omega_{0},\ldots,\omega_{l}]$ uma célula convexa afim de dimensão $k$,
+com $\{\omega_{0},\ldots,\omega_{l}\} \subset \{v_{0},\ldots,v_{m}\}$, 
+então $\tau$ é uma face de $\sigma$ se:
+\begin{enumerate}
+\item $\tau \subset \partial(\sigma)$; 
+\item Se existe alguma sub-célula $\eta$ com $aff(\tau) = aff(\eta)$, então $\eta \subset \tau$.
+\end{enumerate}
+\end{defi}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+
+\begin{defi}[Decomposição Celular]
+Uma cole\c c\~ao $\mathcal{C}$ de c\'elulas convexas afins 
+\'e dita decomposi\c c\~ao celular de um conjunto $S \subset  \R^{n}$ se:
+\begin{enumerate}
+\item $S = \bigcup_{\sigma \in \mathcal{C}}\ \sigma$;
+\item Se $\sigma_{1},\sigma_{2} \in \mathcal{C}$, ent\~ao $\sigma_{1} \cap \sigma_{2} = 
+         \emptyset$ ou $\sigma_{1} \cap \sigma_{2} \in \mathcal{C}$;
+\item Todo subconjunto compacto de $S$ intersecta um n\'umero finito de
+      c\'elulas de $\mathcal{C}$. 
+\end{enumerate}
+\end{defi}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+
+\begin{defi}[Complexo Celular]
+Um complexo celular $\mathcal{C}$ é um conjunto finito de células convexas afins que satisfazem: 
+\begin{enumerate}
+\item Se $\sigma \in \mathcal{C}$ e $\tau$ face de $\sigma$ então $\tau \in \mathcal{C}$;
+\item Se $\sigma_{1},\sigma_{2} \in \mathcal{C}$, ent\~ao $\sigma_{1} \cap \sigma_{2} = \emptyset$ ou $\sigma_{1} \cap \sigma_{2}$ é uma face comum de $\sigma_1$ e $\sigma_2$.
+\end{enumerate}
+\label{complexocelular}
+\end{defi}
+
+\begin{figure}[h]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.2]{imagens/fig1.eps}} \\
+(a) \hspace{2.5cm} (b) \\
+\caption{(a) Exemplo de complexo celular e (b) contra-exemplo de complexo celular.} 
+\label{fig.celula}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+\begin{defi}[Simplexo]
+Uma c\'elula convexa afim 
+$\sigma = [v_{0},\ldots,v_{k}]$ de $\R^{n}$ \'e chamada de simplexo, se 
+$dim(\sigma) = k$, isto \'e, um simplexo $k$-dimensional \'e uma c\'elula 
+convexa afim de dimens\~ao $k$ gerada por $k+1$ pontos. 
+Um simplexo de dimensão 0 é denominado vértice e um simplexo de dimensão 1 é denominado aresta.
+\end{defi}
+\end{frame} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+\begin{defi}[Triangulação]
+Uma decomposi\c c\~ao celular $\mathcal{C}$ de 
+$S \subset \R^{n}$ \'e chamada de triangula\c c\~ao de $S$, se
+todas as c\'elulas de $\mathcal{C}$ s\~ao simplexos. 
+\end{defi}
+
+\begin{defi}[Complexo Simplicial]
+Um complexo simplicial é um complexo celular $\mathcal{C}$ onde todas as célula de $\mathcal{C}$ são simplexos.
+\end{defi}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+\begin{defi}[Propriedades de Simplexos]
+Dado um simplexo 
+$\sigma = [v_{0}, \ldots, v_{k}]$ de $\R^{n}$, define-se : 
+\begin{enumerate} 
+\item A fronteira de $\sigma$, $\partial \sigma$, como a uni\~ao de todas as
+      faces de dimens\~ao $k-1$ de $\sigma$; 
+\item O baricentro de $\sigma$, $b(\sigma) = \frac{1}{k+1} \sum_{i=0}^{k}
+      v_{i}$; 
+\item O di\^ametro de $\sigma$, $\rho(\sigma) = max \{\parallel v_{i}-v_{j} 
+\parallel; i, j = 0, \ldots, k\}$;
+\item O raio de $\sigma$, $r(\sigma) = min \{\parallel v-b(\sigma) \parallel \; | \;
+       v \in \partial(\sigma)\}$;
+\item A robustez de $\sigma$, $\theta(\sigma) = r(\sigma)/\rho(\sigma)$.
+\end{enumerate} 
+\end{defi}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+
+\begin{defi}[Propriedades de Triangulação]
+Se $T$ \'e uma triangula\c c\~ao de 
+$S \subset \R^{n}$, define-se: 
+\begin{enumerate} 
+\item O di\^ametro de $T$, $\rho(T) = sup \{ \rho(\sigma) \; | \; \sigma \in T$ 
+      com $dim(\sigma) > 0 \}$;
+\item A robustez de $T$, $\theta(T) = inf \{ \theta(\sigma) \; | \; \sigma \in T$ 
+      com $dim(\sigma) > 0 \}$.
+\end{enumerate} 
+\end{defi}
+ 
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+
+\begin{defi}[Células Adjacentes]
+Uma célula $\sigma_1$ é dita adjacente a outra célula $\sigma_2$ se $\sigma_1 \cap \sigma_2$ é uma face comum de $\sigma_1$ e $\sigma_2$.
+\end{defi}
+
+\begin{figure}[h]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.2]{imagens/fig2.eps}} 
+%(a)Adjacência entre 2-células \hspace{1.cm} (b) Adjacência entre 3-células
+\caption{Adjacências entre 2-células (por uma aresta) e 3-células (por uma face).} 
+\label{fig.adjacente}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+
+\begin{defi}[Vértices Vizinhos]
+Um vértice é dito vizinho a outro se existe uma aresta que contém os dois.
+\end{defi}
+
+\begin{defi}[Células Incidentes]
+Dada uma célula $\sigma$ de dimensão $p$ e $\tau$ uma célula de dimensão $k$, onde $p > k$, estas células são ditas incidentes se $\tau$ é uma face de $\sigma$. 
+\end{defi}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+
+\begin{defi}[Orientação de uma Célula]
+Seja $\mathcal{C}$ um complexo celular de dimensão $p$, onde $p$ é a maior dimensão de todas as células. A orientação de duas células adjacentes $\sigma$ e $\tau$ de dimensão $p$ de $\mathcal{C}$ é coerente se face de dimensão $p-1$ que compartilham tem orientação oposta em cada uma das células. O complexo celular $\mathcal{C}$ é orientável se uma orientação coerente pode ser escolhida para todas as suas células.
+\end{defi}
+
+\begin{figure}[h]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.32]{imagens/fig3.eps}}
+\caption{Complexo celular bidimensional orientado em sentido anti-horário.} 
+\label{fig.orientacao}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+
+\begin{defi}[Estrela de uma Célula]
+A estrela de uma célula $\sigma$ de um complexo celular $\mathcal{C}$, denominada por $S(\sigma)$ é o conjunto de todas as células de $\mathcal{C}$ que contém $\sigma$, isto é, $S(\sigma) = \{ \tau \in \mathcal{C} \; | \; \sigma \subseteq \tau \}$.
+\end{defi}
+
+\begin{defi}[Elo de uma Célula]
+O elo de uma célula $\sigma \subset \mathcal{C}$ é o conjunto $L(\sigma) = \{ \tau \in \overline{S(\sigma)} \; | \; \tau \cap \sigma = \emptyset \}$, onde $\overline{S(\sigma)}$ é o fecho da estrela de $\sigma$.
+\end{defi}
+
+\begin{figure}[h]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.14]{imagens/fig4.eps}}\\
+%(a) Estrela do vértice central \hspace{1.0cm} (b) Elo do vértice central\\
+ \caption{Representações de uma estrela e um elo de um vértice.} 
+\label{fig.elo}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+
+\begin{defi}[Variedade Linear por Partes]
+Um complexo celular $\mathcal{C}$ de dimensão $n$ é dito uma variedade linear por partes de dimensão $n$ se para todo $\sigma \in \mathcal{C}$, ou $L(\sigma)$ é homeomorfo a uma esfera de dimensão $n-1$, ou é homeomorfo a um disco de dimensão $n-1$. 
+Caso $L(\sigma)$ seja homeomorfo a um disco de dimensão $n-1$, $\sigma$ pertence ao bordo de $\mathcal{C}$. 
+\end{defi}
+
+ \begin{figure}[h]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.18]{imagens/fig5.eps}}\\
+%(a) Ponto de interior \hspace{0.1cm} (b) Ponto de Bordo \hspace{0.1cm} (c) Não-variedade
+\caption{Exemplos de variedades com pontos de interior e de bordo e de uma não-variedade} 
+\label{fig.varLinPartes}
+\end{center}
+\end{figure}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Lineares por Partes }}
+
+\begin{defi}[Variedade Triangulada]
+Uma variedade triangulada $\mathcal{C}$ é uma variedade linear por partes onde todas suas células são simplexos.
+\end{defi}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Formas de Representação de Variedades}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Formas de Representação de Variedades}}
+
+\begin{block}{\bf Formas de Representação de Variedades}
+ As formas de representação mais comuns de variedades são como gráfico de uma função, a imagem de uma função e como a imagem inversa de uma função.
+\end{block}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Variedades como Gráfico de Funções}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades como Gráfico de Funções}}
+
+\begin{block}{$\mathcal{M}$ como gráfico da função $F$}
+ Seja $F: U \subset \R^n \rightarrow \R$ de classe $C^r$. O conjunto
+$\mathcal{M} = \{ \; (x,F(x)) \; | \; x \in U \; \}$ é uma variedade de dimensão $n$ em $\R^{n+1}$ de classe $C^r$.
+\end{block}
+
+\begin{block}{Observações:}
+ \begin{itemize}
+ \item Para $n=1$ o gráfico de $F$ \'e uma curva em $\R^2$;
+ \item Para $n=2$ o gráfico de $F$ \'e uma superf\'icie em $\R^3$.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{{\bf \color{blue} Variedades como Gráfico de Funções}}
+
+\begin{Codigo}[utilizado para gerar a figura \ref{fig.CosSin}]
+\noindent\rule{11.2cm}{1.pt}\\
+\vspace{-0.5cm}
+ \begin{verbatim}
+x  = linspace(0,2*pi,30);              % domínio
+y1 = cos(x);                           % cosseno 
+y2 = sin(x);                           % seno 
+hold on
+plot(x,y1,'r-s');                      % plotando 
+plot(x,y2,'g-*');                      % plotando 
+grid                                   % grid
+xlabel('eixo x');                      % legenda eixo x
+ylabel('eixo y');                      % legenda eixo y
+title('Grafico do seno e do cosseno'); % título 
+legend('sen(x)','cos(x)');             % legenda gráfico
+hold off
+ \end{verbatim}\\
+ \vspace{-1.0cm}
+\noindent\rule{11.2cm}{1.pt}\\
+
+\label{senocoseno}
+\end{Codigo}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades como Gráfico de Funções}}
+
+\begin{figure}[htpb]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.12]{imagens/CosSin.png} }
+
+\caption{Curvas em $\R^2$ geradas como gráfico das funções cosseno e seno.} 
+\label{fig.CosSin}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{{\bf \color{blue} Variedades como Gráfico de Funções}}
+
+\begin{Codigo}[utilizado para gerar a figura \ref{fig.3d_1}]
+\noindent\rule{11.2cm}{1.pt}\\
+\vspace{-0.5cm}
+\begin{verbatim}
+px = py = linspace (-10, 10, 50)';  % domínio
+[x, y] = meshgrid (px, py);         % criando a malha 
+r = sqrt(x.^2 + y.^2) + 0.1;        % variável auxiliar
+z = sin(r) ./ r;                    % função z=F(x,y) 
+surf (x, y, z);                     % plotando 
+xlabel('eixo x');                   % legenda no eixo x
+ylabel('eixo y');                   % legenda no eixo y
+zlabel('F(x,y)');                   % legenda no eixo z
+title('Exemplo de Superficie');     % título do gráfico 
+legend('Superficie z=F(x,y)');      % legenda
+\end{verbatim}\\
+ \vspace{-0.5cm}
+\noindent\rule{11.2cm}{1.pt}\\
+\label{fig3d}
+\end{Codigo}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades como Gráfico de Funções}}
+
+\begin{figure}[htpb]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.3]{imagens/superficie.png}} 
+\caption{Superfície dada pela função $F(x,y)=\frac{sen(\sqrt{x^2+y^2}+0.1)}{\sqrt{x^2+y^2}+0.1}$} 
+\label{fig.3d_1}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{{\bf \color{blue} Variedades como Gráfico de Funções}}
+
+\begin{Codigo}[utilizado para gerar a figura \ref{fig.3d_2}]
+\noindent\rule{11.2cm}{1.pt}
+\vspace{-0.3cm}
+\begin{verbatim}
+px=py=linspace (-10, 10, 50)';     % domínio
+[x, y] = meshgrid (px, py);        % criando a malha 
+r = sqrt(x.^2 + y.^2) + 0.1;       % variável auxiliar
+z = sin(r) ./ r;                   % função z=F(x,y) 
+mesh (x, y, z);                    % plotando 
+xlabel('eixo x');                  % legenda no eixo x
+ylabel('eixo y');                  % legenda no eixo y
+zlabel('F(x,y)');                  % legenda no eixo z
+title('Exemplo de Superficie');    % título do gráfico 
+legend('Superficie z=F(x,y)');     % legenda
+\end{verbatim}\\
+ \vspace{-.5cm}
+\noindent\rule{11.2cm}{1.pt}\\
+\label{fig3d}
+\end{Codigo}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades como Gráfico de Funções}}
+
+\begin{figure}[htpb]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.3]{imagens/malha.png}} 
+\caption{Superfície gerada pela função $F(x,y)=\frac{sen(\sqrt{x^2+y^2}+0.1)}{\sqrt{x^2+y^2}+0.1}$ nos pontos do {\it grid}} 
+\label{fig.3d_2}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Variedades Parametrizadas}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Parametrizadas}}
+
+\begin{block}{Variedades Parametrizadas}
+ Seja $F: U \subset \R^k \rightarrow \R^n$, $ n \geq k$, de classe $C^r$. O conjunto
+$\mathcal{M} = \{ \; F(x) \; | \; x \in U \; \}$ é uma variedade de dimensão $k$ em $\R^{n}$ de classe $C^r$.
+Neste caso $\mathcal{M}$ é a imagem da função $F$, e $F$ é denominada parametrização de $\mathcal{M}$.
+
+As parametrizações mais comuns são tratadas nos curso de c\'alculo e geometria diferencial:
+\begin{itemize}
+ \item Para $n=2$ e $k=1$, $F(x)$ \'e uma curva em $\R^2$;
+ \item Para $n=3$ e $k=1$, $F(x)$ \'e uma curva em $\R^3$;
+ \item Para $n=3$ e $k=2$, $F(x)$ \'e uma superf\'icie em $\R^3$.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{{\bf \color{blue} Variedades Parametrizadas }}
+
+\begin{Codigo}[Curva parametrizada em $\R^2$ (figura \ref{fig.pplanacurva})]
+\noindent\rule{11.2cm}{1.pt}
+\vspace{-0.2cm}
+\begin{verbatim}
+t = linspace(-2,2,80);            % intervalo de t
+f = @(t) t.^2+1.0;                % gerando a função f
+g = @(t) t.*cos(t);               % gerando a função g 
+plot(f(t), g(t));                 % plotando 
+grid                              % gerando um grid
+xlabel('f(t)');                   % legenda eixo horizontal
+ylabel('g(t)');                   % legenda eixo vertical
+title('Exemplo de curva
+Parametrizada');                  % título do gráfico 
+legend('Curva F(t)=(f(t),g(t))'); % legenda
+\end{verbatim}\\
+ \vspace{-0.5cm}
+\noindent\rule{11.2cm}{1.pt}\\
+\label{pplanacurva}
+\end{Codigo}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Parametrizadas}}
+
+\begin{figure}[htpb]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.3]{imagens/pplanacurva.png}}
+\caption{Curva $F(t) = (t^2+1, t\ cos(t))$, $t=[-2:2]$} 
+\label{fig.pplanacurva}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{{\bf \color{blue} Variedades Parametrizadas }}
+
+\begin{Codigo}[Curva parametrizada em $\R^3$ (figura \ref{fig.pespcurva})]
+\noindent\rule{11.2cm}{1.pt}
+\vspace{-0.2cm}
+\begin{verbatim}
+t = linspace(0,20,100);            % intervalo parâmetro t
+plot3(sin(t),cos(t),t);            % plotando 
+grid                               % gerando um grid
+xlabel('eixo x')                   % legenda no eixo x
+ylabel('eixo y')                   % legenda no eixo y
+zlabel('eixo z')                   % legenda no eixo z
+axis square                        %
+title('Exemplo de curva 
+Parametrizada');                   % título do gráfico 
+legend('Curva 
+F(t)=(sin(t),cos(t),t),t=[0,20]'); % legenda
+\end{verbatim}\\
+ \vspace{-0.5cm}
+\noindent\rule{11.2cm}{1.pt}\\
+\label{pespcurva}
+\end{Codigo}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Parametrizadas}}
+
+\begin{figure}[htpb]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.3]{imagens/pespcurva.png}} 
+\caption{Curva em $\R^3$ da função $F(t)= (sin(t), cos(t), t)$ , $t=[0,20]$ } 
+\label{fig.pespcurva}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{{\bf \color{blue} Variedades Parametrizadas }}
+
+\begin{Codigo}[Superfície parametrizada em $\R^3$ (figura \ref{fig.pespsurf})]
+\noindent\rule{11.2cm}{1.pt}
+\vspace{-0.2cm}
+\begin{verbatim}
+t = linspace(0,10,40);           % intervalo do parâmetro t 
+u = linspace(-2,2,40);           % intervalo do parâmetro u
+[t,u] = meshgrid(t,u);           % gerando a malha
+x = 2.*t;                        % f(t,u)
+y = 3*u.*cos(t);                 % g(t,u)
+z = u.*sin(t);                   % h(t,u)
+surf(x,y,z);                     % plotando
+xlabel('eixo x')                 % legenda no eixo x
+ylabel('eixo y')                 % legenda no eixo y
+zlabel('eixo z')                 % legenda no eixo z
+axis square
+title('Exemplo de Superfície Parametrizada'); % título 
+legend('Superficie F(t,u)');                  % legenda
+\end{verbatim}\\
+ \vspace{-0.5cm}
+\noindent\rule{11.2cm}{1.pt}\\
+\label{pespsurf}
+\end{Codigo}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Parametrizadas}}
+
+\begin{figure}[htpb]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.3]{imagens/pespsurf.png}} 
+\caption{Superfície $F(t,u) = (f(t,u), g(t,u), h(t,u))$, $t=[0,10]$, $u=[-2,2]$, $f(t,u)=2\ t$, $g(t,u)=3\ u\ cos(t)$, $h(t,u)=u\ sen(t)$.} 
+\label{fig.pespsurf}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{{\bf \color{blue} Variedades Parametrizadas }}
+
+\begin{Codigo}[Superfície parametrizada em $\R^3$ (figura \ref{fig.pespmesh})]
+\noindent\rule{11.2cm}{1.pt}
+\vspace{-0.2cm}
+\begin{verbatim}
+t = linspace(0,10,40);           % intervalo do parâmetro t 
+u = linspace(-2,2,40);           % intervalo do parâmetro u
+[t,u] = meshgrid(t,u);           % gerando a malha
+x = 2.*t;                        % f(t,u)
+y = 3*u.*cos(t);                 % g(t,u)
+z = u.*sin(t);                   % h(t,u)
+mesh(x,y,z);                     % plotando
+xlabel('eixo x')                 % legenda no eixo x
+ylabel('eixo y')                 % legenda no eixo y
+zlabel('eixo z')                 % legenda no eixo z
+axis square
+title('Exemplo de Superfície Parametrizada'); % título 
+legend('Superficie F(t,u)');                  % legenda
+\end{verbatim}\\
+ \vspace{-0.5cm}
+\noindent\rule{11.2cm}{1.pt}\\
+\label{pespmesh}
+\end{Codigo}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Parametrizadas}}
+
+\begin{figure}[htpb]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.3]{imagens/pespmesh.png}} 
+ \caption{Superfície $F(t,u) = (f(t,u), g(t,u), h(t,u))$, $t=[0,10]$, $u=[-2,2]$, $f(t,u)=2\ t$, $g(t,u)=3\ u\ cos(t)$, $h(t,u)=u\ sen(t)$ nos pontos de {\it grid}.}
+\label{fig.pespmesh}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Variedades Definidas Implicitamente}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Definidas Implicitamente}}
+
+\begin{block}{Variedades Definidas Implicitamente}
+Dada uma fun\c{c}\~ao de classe $C^r$, $F : \R^n \rightarrow \R^k$, $n \geq k$,  o conjunto dos pontos onde $F$ se anula $\mathcal{M} = F^{-1}(0) = \{ x \in \R^n  \; | \: F(x) = 0 \}$, \'e uma variedade definida implicitamente se para todo ponto em $\mathcal{M}$ a derivada de $F$ neste ponto tem posto m\'aximo. Neste caso a variedade $\mathcal{M}$ tem dimens\~ao $n-k$ 
+% (veja o Teorema \ref{teo_VI} da Se\c{c}\~ao \ref{var_dif}). 
+
+Os casos mais comuns geralmente vistos nos cursos de c\'alculo s\~ao:
+\begin{itemize}
+ \item Para $n=2$ e $k=1$, $F^{-1}(0)$ \'e uma curva em $\R^2$;
+ \item Para $n=3$ e $k=2$, $F^{-1}(0)$ \'e uma curva em $\R^3$;
+ \item Para $n=3$ e $k=1$, $F^{-1}(0)$ \'e uma superf\'icie em $\R^3$.
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{{\bf \color{blue} Variedades Definidas Implicitamente }}
+
+\begin{Codigo}[Seja $F:\R^2 \rightarrow \R$ dada por $F(x,y)=3.5^{-\sqrt{x^2+y^2}}cos(y)sin(x/2)$. $\mathcal{M}$ é representada na figura \ref{fig.projecao}-(a) ]
+\noindent\rule{11.2cm}{1.pt}
+\vspace{-0.2cm}
+\begin{verbatim}
+px = py = linspace (-3, 3, 50)';     % domínio
+[x, y] = meshgrid (px, py);          % gerando a malha
+z = 3.5.^(-1.*sqrt(x.^2+y.^2)) 
+.*cos(y).*sin(0.5*x);                % superficie z=f(x,y)
+contour(x,y,z,10)                    % 10 curvas de nível
+xlabel('eixo x')                     % legenda no eixo x
+ylabel('eixo y')                     % legenda no eixo y
+legend('Plano xy');                  % legenda
+\end{verbatim}\\
+ \vspace{-0.5cm}
+\noindent\rule{11.2cm}{1.pt}\\
+\label{supcurvanivel}
+\end{Codigo}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{{\bf \color{blue} Variedades Definidas Implicitamente }}
+
+\begin{Codigo}[Seja $F:\R^2 \rightarrow \R$ dada por $F(x,y)=3.5^{-\sqrt{x^2+y^2}}cos(y)sin(x/2)$. Na figura \ref{fig.projecao}-(b) temos o gráfico de $F$ e sua projeção]
+\noindent\rule{11.2cm}{1.pt}
+\vspace{-0.2cm}
+\begin{verbatim}
+px = py = linspace (-3, 3, 50)';     % domínio
+[x, y] = meshgrid (px, py);          % gerando a malha
+z=3.5.^(-1.*sqrt(x.^2+y.^2))
+.*cos(y).*sin(0.5*x);                % superficie z=f(x,y)
+surfc(x,y,z)                         % plotando F(x,y) e 
+                                     % curvas de nível
+xlabel('eixo x')                     % legenda no eixo x
+ylabel('eixo y')                     % legenda no eixo y
+zlabel ('F(x,y)')                    % legenda no eixo z
+title('Exemplo de Superficie');      % título
+legend('Superficie z=F(x,y)');       % legenda
+\end{verbatim}\\
+ \vspace{-0.5cm}
+\noindent\rule{11.2cm}{1.pt}\\
+\label{supcurvanivelb}
+\end{Codigo}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Definidas Implicitamente}}
+
+\begin{figure}[htpb]
+ \begin{tabular}{cc}
+\fbox{\includegraphics[angle=0,scale=0.25]{imagens/projxy.png}} & \fbox{\includegraphics[angle=0,scale=0.24]{imagens/projecao.png}} \\
+(a) & (b) 
+\end{tabular}
+\caption{Superficie $F(x,y)=3.5^{-\sqrt{x^2+y^2}} cos(y) sin(x/2)$.}
+\label{fig.projecao}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{{\bf \color{blue} Variedades Definidas Implicitamente }}
+
+\begin{Codigo}[Seja $f:\R^3 \rightarrow \R$; $f(x, y, z) = x^2 + y^2 + z^2$ . A esfera {$S^2$} de raio $r=2$ fica definida implicitamente pela equação $f(x,y,z) = 4$ (ver figura \ref{fig.esfera})]
+\noindent\rule{11.2cm}{1.pt}
+\vspace{-0.2cm}
+\begin{verbatim}
+[x,y,z] = meshgrid(-2:0.2:2,
+-2:0.2:2,-2:0.2:2);               % gerando a malha
+F = x.^2 + y.^2 + z.^2 -4.0 ;     % esfera 
+isosurface(x,y,z,F,0);            % isosuperfície
+axis equal;
+xlabel('eixo x')                  % legenda no eixo x
+ylabel('eixo y')                  % legenda no eixo y
+zlabel('eixo z')                  % legenda no eixo z
+legend('Esfera raio 2');          % legenda
+\end{verbatim}\\
+ \vspace{-0.5cm}
+\noindent\rule{11.2cm}{1.pt}\\
+\label{esfera}
+\end{Codigo}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Definidas Implicitamente}}
+
+\begin{figure}[htpb]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.3]{imagens/esfera_isosurf.png}} 
+\caption{Isosuperfície $F(x,y,z)=x^2+y^2+z^2-4.0$} 
+\label{fig.esfera}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{{\bf \color{blue} Variedades Definidas Implicitamente }}
+
+\begin{Codigo}[Seja $F:\R^3 \rightarrow \R^2$ $F(x,y,z) = (f_1(x,y,z),f_2(x,y,z))$, onde $f_1(x,y,z)= x^2 + y^2 + z^2 - 1$ e $f_2(x,y,z)= 2x^2 + 2y^2 - 1$.]
+\noindent\rule{11.2cm}{1.pt}
+\vspace{-0.2cm}
+\begin{verbatim}
+[x,y,z] = meshgrid(-2:0.2:2,
+-2:0.2:2,-2:0.2:2);                 % gerando a malha
+f1 = x.^2 + y.^2 + z.^2 -1.0 ;      % esfera
+f2 =2.0.*x.^2 + 2.0.*y.^2 -1.0 ;    % cilindro                        
+isosurface(x,y,z,f1,0.1);           % isosuperfície
+isosurface(x,y,z,f2,0);             % isosuperfície
+camlight;
+lighting gouraud;
+axis equal;
+xlabel('eixo x')                    % legenda no eixo x
+ylabel('eixo y')                    % legenda no eixo y
+zlabel('eixo z')                    % legenda no eixo z
+\end{verbatim}\\
+ \vspace{-0.5cm}
+\noindent\rule{11.2cm}{1.pt}\\
+\label{isosurfr3r2}
+\end{Codigo}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Definidas Implicitamente }}
+
+\begin{block}{}  
+ O conjunto $f_1^{-1}(0)$ é a esfera {$S^2$} de raio $r=1$ e o conjunto $f_2^{-1}(0)$ é um cilindro. A figura \ref{fig.isosurfr3r2}-(a)mostra as isosuperfícies gerada pelo código, feito em Matlab/Octave. Neste caso, $F^{-1}({\bf 0})=f_1^{-1}(0)\bigcap f_2^{-1}(0)$ são os círculos nos planos $z=\sqrt{2}$ e $z=-\sqrt{2}$ mostrados na figura \ref{fig.isosurfr3r2}-(b)
+\end{block}
+
+\begin{figure}[htpb]
+ \begin{tabular}{cc}
+\fbox{\includegraphics[angle=0,scale=0.255]{imagens/isosurfr3r2.png}} & \fbox{\includegraphics[angle=0,scale=0.2]{imagens/isosurfr3r2_2.png}} \\
+(a) & (b) 
+\end{tabular}
+\caption{Isosuperfície $F(x,y,z)=(f_1(x,y,x),f_2(x,y,z))$} 
+\label{fig.isosurfr3r2}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{{\bf \color{blue} Variedades Definidas Implicitamente }}
+
+\begin{Codigo}[Seja $F:\R^3 \rightarrow \R$; $F(x,y,z) = x^2 + y^2 - z^2$. \\
+A isosuperfície 0 da função $F(x,y,z)$ é um cone, que é uma variedade exceto pela origem que é uma singularidade.]
+\noindent\rule{11.2cm}{1.pt}
+\vspace{-0.2cm}
+\begin{verbatim}
+[x,y,z] = meshgrid(-2:0.2:2,
+-2:0.2:2,-2:0.2:2);              % gerando a malha
+F = x.^2 + y.^2 - z.^2;          % cone
+isosurface(x,y,z,F,0);           % isosuperfície
+axis equal;
+xlabel('eixo x')                 % legenda no eixo x
+ylabel('eixo y')                 % legenda no eixo y
+zlabel('eixo z')                 % legenda no eixo z
+legend('Par cones');             % legenda 
+\end{verbatim}\\
+ \vspace{-0.5cm}
+\noindent\rule{11.2cm}{1.pt}\\
+\label{cone}
+\end{Codigo}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Definidas Implicitamente }}
+
+\begin{figure}[htpb]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.3]{imagens/parcones.png}} 
+\caption{Isosuperfície $F(x,y,z)=x^2+y^2-z^2$} 
+\label{fig.cone}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{{\bf \color{blue} Variedades Definidas Implicitamente }}
+
+\begin{Codigo}[$G_1(x,y,z) = x^2 + y^2 - z^2 - 1.0$. \\
+A isosuperfície 0 da função $G_1(x,y,z)$ é um hiperboloide de uma folha]
+\noindent\rule{11.2cm}{1.pt}
+\vspace{-0.2cm}
+\begin{verbatim}
+[x,y,z] = meshgrid(-2:0.2:2,
+-2:0.2:2,-2:0.2:2);                % gerando a malha
+G_1 = x.^2 + y.^2 - z.^2 - 1.0;    % hiperbolóide
+isosurface(x,y,z,G_1,0);           % isosuperfície
+axis equal;
+xlabel('eixo x')                   % legenda no eixo x
+ylabel('eixo y')                   % legenda no eixo y
+zlabel('eixo z')                   % legenda no eixo z
+legend('Hiperboloide uma folha');  % legenda  
+\end{verbatim}\\
+ \vspace{-0.5cm}
+\noindent\rule{11.2cm}{1.pt}\\
+\label{hipumaf}
+\end{Codigo}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Definidas Implicitamente }}
+
+\begin{figure}[htpb]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.3]{imagens/hipumafolha.png}} 
+\caption{Isosuperfície $G_1(x,y,z)=x^2+y^2-z^2-1.0$} 
+\label{fig.hipumafolha}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{{\bf \color{blue} Variedades Definidas Implicitamente }}
+
+\begin{Codigo}[$G_2(x,y,z)=x^2 + y^2 - z^2 + 1.0$. \\
+A isosuperfície 0 da função $G_2(x,y,z)$ é um hiperboloide de duas folhas]
+\noindent\rule{11.2cm}{1.pt}
+\vspace{-0.2cm}
+\begin{verbatim}
+[x,y,z] = meshgrid(-2:0.2:2,
+-2:0.2:2,-2:0.2:2);                % gerando a malha
+G_2 = x.^2 + y.^2 - z.^2 + 1.0;    % hiperbolóide
+isosurface(x,y,z,G_2,0);           % isosuperfície
+axis equal;
+xlabel('eixo x')                   % legenda no eixo x
+ylabel('eixo y')                   % legenda no eixo y
+zlabel('eixo z')                   % legenda no eixo z
+legend('Hiperboloide uma folha');  % legenda  
+\end{verbatim}\\
+ \vspace{-0.5cm}
+\noindent\rule{11.2cm}{1.pt}\\
+\label{hipduasf}
+\end{Codigo}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Definidas Implicitamente }}
+
+\begin{figure}[htpb]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.3]{imagens/hipduasfolhas.png}} 
+\caption{Isosuperfície $G_2(x,y,z)=x^2+y^2-z^2+1.0$} 
+\label{fig.hipduasfolhas}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Definidas Implicitamente }}
+
+\begin{block}{Toro}
+ A figura \ref{fig.toro} mostra a isosuperfície da função $F: \mathbb{R}^4 \rightarrow \mathbb{R}$ onde $F(x_1,x_2,x_3,x_4) = \left(1 - \sqrt{x_1^2 + x_2^2 + x_3^2}\right)^2 + \; x_4^2 - 0.25 = 0$ ($S^2 \times S^1$ é a generalização de um toro).
+\end{block}
+
+\begin{figure}[htpb]
+\begin{center} 
+\fbox{\includegraphics[angle=0,scale=0.25]{imagens/3Dtorus_all.png}} 
+\caption{Isosuperfície da função $F = \left(1 - \sqrt{x_1^2 + x_2^2 + x_3^2}\right)^2 + \; x_4^2 - 0.25 = 0$} 
+\label{fig.toro}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 2.2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Variedades Definidas Implicitamente }}
+
+\begin{figure}[htpb]
+ \begin{tabular}{ccc}
+\fbox{\includegraphics[angle=0,scale=0.23]{imagens/3Dtorus.png}} & \fbox{\includegraphics[angle=0,scale=0.25]{imagens/3Dtorus_cut.png}} &
+\fbox{\includegraphics[angle=0,scale=0.25]{imagens/3Dtorus_cut2.png}} 
+\end{tabular}
+\caption{Figura \ref{fig.toro} com $x_i \ge 0$ à esquerda, $x_3 = 0$ ao centro e $x_3 = 0.5$ à direita.} 
+\label{fig.torocortes}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document} 
+
+ 

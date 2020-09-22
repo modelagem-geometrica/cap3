@@ -1,0 +1,190 @@
+%\documentclass{beamer}[10]
+\documentclass[serif,10pt]{beamer}
+\usetheme{Madrid}
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{multimedia}
+\usepackage{pgfgantt}
+\usepackage{overpic}
+\usepackage{psfrag}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{graphicx,xr}
+\usepackage[T1]{fontenc}		% usa fontes postscript com acentos
+\setbeamersize{text margin left=20pt,text margin right=20pt} % para
+%\input{packages} %aqruivo latex onde estão salvados os pacotes.
+%\usepackage[pdftex]{hyperref} % link
+\usefonttheme{professionalfonts}
+\usepackage{psfrag}
+\usepackage{eqnarray,amsmath}
+\usepackage{verbatim}
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\newtheorem{lema}{Lema}
+\newtheorem{teore}{Teorema}
+\newtheorem{defi}{Definição}
+\newtheorem{corol}{Corolário}
+\newtheorem{ex}{Exemplo}
+\newtheorem{Codigo}{Código em Octave}
+\newtheorem{propri}{Propriedade}
+\newcommand{\dem}{\noindent \underline{Demonstração}: $\,$}
+\newcommand{\fim}{\hfill $\rule{2.0mm}{2.0mm}$ \\}    
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+
+%\DeclareCaptionType{Codigo}
+
+\setbeamertemplate{caption}[numbered]
+
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[]{{\bf \huge{Variedades Computacionais}}}
+   \vspace{3.5cm}
+ \author[Variedades Computacionais]{
+         {\huge \color{blue} Capítulo 3} \\ \vspace{0.5cm}
+         {\large Antonio Castelo e Juliana Bertoco} \vspace{0.5cm}} 
+ \date{ }
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}
+\maketitle
+\vspace{-2.0cm}
+\begin{figure}[] 
+\begin{center} 
+   \includegraphics[clip,scale=0.3]{imagens/fig410_2.png} 
+\end{center}
+\end{figure} 
+\end{frame} 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pgfdeclareimage[height=1.3cm]{logo}{imagens/fig410_3.png} 
+\logo{\pgfuseimage{logo}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SUMARIO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[allowframebreaks]
+\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centering
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Capítulo 3: Estrutura de Dados para Variedades Lineares por Partes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 3.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Capítulo 3}}
+
+\begin{block}{\bf Capítulo 3: Estrutura de Dados para Variedades Lineares por Partes}
+Neste capítulo é introduzido formas de representação e estrutura de dados para Variedades de dimensão 2 e 3, lineares por partes que serão utilizados em capítulos posteriores.
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 3.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Estrutura de Dados para Variedades Lineares por Partes}}
+
+\begin{block}{\bf Estrutura de Dados para Variedades Lineares por Partes}
+Estruturas de dados para variedades de dimensão 2 e 3 lineares por partes são grafos onde temos informações sobre vértices, arestas, faces (e volumes caso seja malhas volumétricas). Estas estruturas podem ser classificadas como estruturas topológicas explícitas ou implícitas.
+\end{block}
+
+\begin{figure}[h]
+\begin{center} 
+{\includegraphics[angle=0,scale=0.34]{imagens/fig410.png}}
+\caption{Estrutura de dados topológicas.} 
+\label{fig.Est_Dados}
+\end{center}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Estruturas de Dados Explícitas}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 3.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Estrutura de Dados Explícitas}}
+
+\begin{block}{\bf Estrutura de Dados Explícitas}
+Estruturas de dados topológicas explícitas são estrururas que apresentam todos os elementos da estrutura explicitamente. 
+\end{block}
+
+\begin{figure}[h]
+\begin{center} 
+{\includegraphics[angle=0,scale=0.28]{imagens/fig32.png}}
+\caption{Estrutura de dados topológicas explícitas.} 
+\label{fig.Explicita}
+\end{center}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Estruturas de Dados Implícitas}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 3.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Estrutura de Dados Implícitas}}
+
+\begin{block}{\bf Estrutura de Dados Implícitas}
+Estruturas de dados topológicas implícitas são estrururas que apresentam todos os elementos da estrutura de forma implícita, tendo as informação obtidas através de cálculos com números inteiros. 
+\end{block}
+
+\begin{figure}[h]
+\begin{center} 
+{\includegraphics[angle=0,scale=0.25]{imagens/fig35.png}}
+\caption{Estrutura de dados topológicas implícitas.} 
+\label{fig.Implicita}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Equipes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Equipes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf\color{blue}  Equipe}}
+
+\begin{block}{\bf Equipe}
+\begin{itemize}
+\item {\bf Capítulo 3:} Juniormar, Paulo Henrique e Luiz Fernando;
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Referências}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Referencias %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf\color{blue}  Referências}}
+
+\begin{block}{\bf Referências}
+\begin{itemize}
+\item {\bf 1:} Mantila;
+\item {\bf 2:} Dissertação Hélio Lopez;
+\item {\bf 3:} Dissertação Mario Lizier;
+\item {\bf 4:} Dissertação Marcos Lage;
+\item {\bf 5:} Dissertação Ícaro;
+\end{itemize}
+\end{block}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document} 
+
+ 

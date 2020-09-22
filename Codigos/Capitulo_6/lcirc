@@ -1,0 +1,13 @@
+OBJECTS = maincirc.o bez_circ.o trans_circ.o decas.o draw_segment.o
+
+LIBS = -lm
+
+mainps: $(OBJECTS)
+	cc $(OBJECTS) $(LIBS) -o runcirc
+	
+
+maincirc.o:           maincirc.c
+bez_circ.o:	      bez_circ.c
+trans_circ.o:	      trans_circ.c
+decas.o:	      decas.c
+draw_segment.o:	      draw_segment.c

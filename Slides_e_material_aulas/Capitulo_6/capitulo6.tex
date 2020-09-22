@@ -1,0 +1,237 @@
+%\documentclass{beamer}[10]
+\documentclass[serif,10pt]{beamer}
+\usetheme{Madrid}
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{multimedia}
+\usepackage{pgfgantt}
+\usepackage{overpic}
+\usepackage{psfrag}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{graphicx,xr}
+\usepackage[T1]{fontenc}		% usa fontes postscript com acentos
+\setbeamersize{text margin left=20pt,text margin right=20pt} % para
+%\input{packages} %aqruivo latex onde estão salvados os pacotes.
+%\usepackage[pdftex]{hyperref} % link
+\usefonttheme{professionalfonts}
+\usepackage{psfrag}
+\usepackage{eqnarray,amsmath}
+\usepackage{verbatim}
+
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\newtheorem{lema}{Lema}
+\newtheorem{teore}{Teorema}
+\newtheorem{defi}{Definição}
+\newtheorem{corol}{Corolário}
+\newtheorem{ex}{Exemplo}
+\newtheorem{Codigo}{Código em Octave}
+\newtheorem{propri}{Propriedade}
+\newcommand{\dem}{\noindent \underline{Demonstração}: $\,$}
+\newcommand{\fim}{\hfill $\rule{2.0mm}{2.0mm}$ \\}    
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+
+%\DeclareCaptionType{Codigo}
+
+\setbeamertemplate{caption}[numbered]
+
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[]{{\bf \huge{Variedades Computacionais}}}
+   \vspace{3.5cm}
+ \author[Variedades Computacionais]{
+         {\huge \color{blue} Capítulo 6} \\ \vspace{0.5cm}
+         {\large Antonio Castelo e Juliana Bertoco} \vspace{0.5cm}} 
+ \date{ }
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}
+\maketitle
+\vspace{-2.0cm}
+\begin{figure}[] 
+\begin{center} 
+   \includegraphics[clip,scale=0.3]{imagens/Bule.png} 
+\end{center}
+\end{figure} 
+\end{frame} 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pgfdeclareimage[height=1.8cm]{logo}{imagens/bule2.png} 
+\logo{\pgfuseimage{logo}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SUMARIO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[allowframebreaks]
+\frametitle{Sumário}
+\tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\centering
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Capítulo 6: Curvas e Superfícies NURBS}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 6.0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Capítulo 6}}
+
+\begin{block}{\bf Capítulo 6: Curvas e Superfícies NURBS}
+Neste capítulo são apresentadas técnicas de aproximação de curvas e superfícies que são utilizadas para modelagem. Estas técnicas foram as primeiras técnicas de modelagem no início dos anos 60.
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Curvas e Superfícies de Bezier}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 6.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Curvas e Superfícies de Bezier}}
+
+\begin{block}{\bf Curvas e Superfícies de Bezier}
+Curvas e superfícies de Bezier são aproximações polinomiais que tem a propriedade de aproximar um polígono de controle dado pelo usuário.
+\end{block}
+
+\begin{figure}[h]
+\begin{center} 
+{\includegraphics[angle=0,scale=0.45]{imagens/Bezier.png}}
+\caption{Curva de Bezier} 
+\label{fig.bezier}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Curvas e Superfícies de B-Splines}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 6.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Curvas e Superfícies de B-Splines}}
+
+\begin{block}{\bf Curvas e Superfícies de B-Splines}
+Curvas e superfícies de B-Splines difere das curvas e superfícies de Bezier por serem  aproximações polinomiais por partes que também tem a propriedade de aproximar um polígono de controle dado pelo usuário.
+\end{block}
+
+\begin{figure}[h]
+\begin{center} 
+{\includegraphics[angle=0,scale=0.45]{imagens/Bule}}
+\caption{Superfície de um bule de chá usando B-Splines.} 
+\label{fig.bsplines}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Curvas e Superfícies de B-Splines Racional}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 6.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Curvas e Superfícies de B-Splines Racional}}
+
+\begin{block}{\bf Curvas e Superfícies de B-Splines Racional}
+Curvas e superfícies de B-Splines Racional difere das curvas e superfícies de B-Splines por serem  aproximações racionais por partes em vez de polinomiais por partes. 
+\end{block}
+
+\begin{figure}[h]
+\begin{center} 
+{\includegraphics[angle=0,scale=0.27]{imagens/B-Splines-R.png}}
+\caption{Curvas modeladas com B-Splines Racional.} 
+\label{fig.bsplines_racional}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Curvas e Superfícies NURBS}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 6.4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Curvas e Superfícies NURBS}}
+
+\begin{block}{\bf Curvas e Superfícies NURBS}
+Curvas e superfícies NURBS (Non Uniform Rational B-Splines) são curvas B-Splines Racional para conjunto de nós não uniforme e são as formas que generalizam todas as demais. 
+\end{block}
+
+\begin{figure}[h]
+\begin{center} 
+{\includegraphics[angle=0,scale=0.24]{imagens/NURBS.jpg}}
+\caption{Superfície de um carro modelada com NURBS.} 
+\label{fig.NURBS}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Teorema de Bernstein}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SLIDE 6.4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Teorema de Bernstein}}
+
+\begin{block}{\bf Teorema de Weierstrass}
+Toda função contínua definida em um compacto pode ser uniformemente aproximada por polinômios.
+\end{block}
+
+\begin{block}{\bf Teorema de Bernstein}
+Toda função contínua definida em um intervalo fechado pode ser uniformemente aproximada por polinômios.
+\end{block}
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Equipe}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Equipe %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Equipe}}
+
+\begin{block}{\bf Equipe}
+\begin{itemize}
+\item {\bf Capítulo 6:} Rosalía e Amanda;
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Referências}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Referências %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{{\bf \color{blue} Referências}}
+
+\begin{block}{\bf Referências}
+\begin{itemize}
+\item Livro The NURBS book
+\item Livro David Rogers
+\item Livro Farin
+\item \url{http://www.farinhansford.com/books/nurbs/materials.html}
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document} 
+
+ 

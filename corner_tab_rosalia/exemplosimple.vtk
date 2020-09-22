@@ -1,0 +1,27 @@
+# vtk DataFile Version 3.0
+2D scalar data
+ASCII
+DATASET UNSTRUCTURED_GRID
+POINTS 8 float
+ 0.00  0.00 2
+ 1.00  0.00 2
+ 1.00  1.00 2
+ 0.00  1.00 2
+ 2.00  0.00 2
+ 3.00  0.00 2
+ 3.00  1.00 2
+ 2.00  1.00 2
+CELLS 6 24
+3 0 1 2
+3 0 2 3
+3 1 4 2
+3 4 7 2
+3 4 5 7
+3 5 6 7
+CELL_TYPES 6 
+5
+5
+5
+5
+5
+5
